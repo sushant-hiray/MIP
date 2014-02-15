@@ -10,9 +10,9 @@ function y = myRadonTransTheta(Image,theta,n_t)
     res2 = myIntegration2(Image,theta*pi/180,1);
     res3 = myIntegration2(Image,theta*pi/180,3);
     
-    imagesc(res1);
+    %imagesc(res1);
     %imagesc(res2);
-    %imagesc(res3);
+    imagesc(res3);
     
     %y = [res1;res2;res3]
     y=0 
