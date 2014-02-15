@@ -1,9 +1,9 @@
-function y = myFilterShepLogan(Image)
-L = 50000000;
+function y = myFilterShepLogan(Image,L)
+%L = 50000000;
 RadonImage = radon(Image);
 FFTImage = fft2(RadonImage);
 
-filter = arrayfun(@(x) sinc(abs(x)*05*pi/L)*x*abs(x),FFTImage); % shep logan
+filter = arrayfun(@(x) sinc(x*05*pi/L)*x*abs(x),FFTImage); % shep logan
 
 IFFTImage = ifft2(filter);
 
