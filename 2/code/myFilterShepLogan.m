@@ -1,5 +1,4 @@
-function myFilterShepLogan(Image,L)
-%L = 50000000;
+function myFilterShepLogan(Image)
 RadonImage = radon(Image);
 FFTImage = fft2(RadonImage);
 
