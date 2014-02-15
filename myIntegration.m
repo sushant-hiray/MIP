@@ -1,29 +1,24 @@
-function y = myIntegration(Image,c,t,theta,step_size)
+function y = myIntegration(Image,t,theta,step_size)
     [m,n] = size(Image);
-    s =0;
+    c = size(Image)/2;
+    R = [[cos(theta) -sin(theta)],[sin(theta) cos(theta)]];
     
-    x = c(1) +t*cos(theta) - s*sin(theta);
-    y = c(2) +t*sin(theta) + s*cos(theta);
-    sum =0;
-    condition = 0<=x && x<=m && 0<=y && y <=n;
+    %size(Image)
+    %[X,Y] = meshgrid(1:m,1:n);
+    [X,Y] = meshgrid(1:step_size:m,1:step_size:n);
     
-    while condition 
-        sum = sum + interp2(Image,x,y);
-        s =s + step_size;
-        x = c(1) + t*cos(theta) -s*sin(theta);
-        y = c(2) + t*sin(theta) + s*cos(theta);
-        condition =  0<=x && x<=m && 0<=y && y <=n;
-    end  
-    s=-0.02;
-    condition = 0<=x && x<=m && 0<=y && y <=n;
-    while condition 
-        sum = sum + interp2(Image,x,y);
-        s =s - step_size;
-        x = c(1) + t*cos(theta) -s*sin(theta);
-        y = c(2) + t*sin(theta) + s*cos(theta);
-        condition =  0<=x && x<=m && 0<=y && y <=n;
-    end
+    %size(X)
+    X1 = X - c(1);
+    Y1 = Y - c(2);
+    X2 = c(1) + (X1)*cos(theta) -(Y1)*sin(theta);
+    Y2 = c(2) + (X1)*sin(theta) + (Y1)*cos(theta);
 
+    Z = interp2(Image,X2,Y2);
+    Z(find(isnan(Z)))=0;
+    size(Z);
+    cor =  floor((t+n/2)/step_size);
+    a =sum(Z);
+    y = a(cor);
 end
 
 
