@@ -1,0 +1,16 @@
+function y = myFilterShepLogan(Image)
+L = 100;
+RadonImage = radon(Image);
+FFTImage = fft2(RadonImage);
+
+filter = arrayfun(@(x) (abs(x) > 0)*x*abs(x)*sinc(0.5*pi*abs(x)),FFTImage); % shep logan
+
+IFFTImage = ifft2(filter);
+
+IRadonImage = iradon(IFFTImage,0:179);
+
+imagesc(IRadonImage);
+
+
+end
+

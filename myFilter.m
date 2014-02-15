@@ -3,7 +3,9 @@ function y = myFilter(Image)
 RadonImage = radon(Image);
 FFTImage = fft2(RadonImage);
 
-filter = arrayfun(@(x) x*abs(x),FFTImage);
+%filter = arrayfun(@(x) x*abs(x),FFTImage); // ram lak
+%filter = arrayfun(@(x) x*abs(x),FFTImage);
+%filter = arrayfun(@(x) x*abs(x),FFTImage);
 
 IFFTImage = ifft2(filter);
 
