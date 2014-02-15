@@ -1,6 +1,6 @@
 function y = myRadonTransTheta(Image,theta,n_t)
     s = size(Image)
-    ts = linspace(0,s(1),(s(1)-1)/n_t +1);
+    ts = linspace(0,s(1),s(1)/n_t-1);
     c = size(Image)/2;
     
     %result = zeros(n_t);
@@ -12,7 +12,7 @@ function y = myRadonTransTheta(Image,theta,n_t)
     
     %imagesc(res1);
     %imagesc(res2);
-    imagesc(res3);
+    %imagesc(res3);
     size(ts)
     size(res3)
     plot(ts,res3)

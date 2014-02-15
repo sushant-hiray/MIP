@@ -10,3 +10,12 @@ c) The following images were generated  as per varying delta `s`:
 	 
 	We can observe that the image with delta `s` 0.5 is the sharpest whereas that with 3 is rough.
 	This is pretty much obvious given the fact that as we have less delta `s`, we have more datapoints, thus the output is more sharp.
+
+	Following plots were generated as per varying delta `s`:
+	a) 1d-0-5
+	b) 1d-1
+	c) 1d-3
+
+	As we can see from the graphs, when we decrease the step size the plot becomes realtively smoother with less sharp jumps.
+	As we increase it to 3, the plot becomes rough with sharp differences between neighboring points.
+
