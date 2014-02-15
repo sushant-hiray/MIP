@@ -1,0 +1,17 @@
+
+1)
+(a) 
+
+Value of delta`s`:
+The step size should be such that most of the desired values of `t` should be multiples of the step size.
+Thus, 
+
+Interpolation Scheme used:
+We used the default interpolation scheme of Bilinear Interpolation in `interp2`
+Bilinear interpolation considers the closest 2x2 neighborhood of known pixel values surrounding the unknown pixel.
+It then takes a weighted average of these 4 pixels to arrive at its final interpolated value. 
+This results in much smoother looking images than nearest neighbor.
+
+This is better than nearest neighour interpolation as, in nearest neighbour, we use the value of only the nearest neighbour whereas in bilinear we use the averaged out values of the closest 2x2 pixels, thus we get a much smoother looking image.
+
+
