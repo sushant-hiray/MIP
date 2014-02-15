@@ -1,16 +1,13 @@
-function y = myRadonTrans(Image,n_thetas,n_t,step_size)
+function y = myRadonTrans(Image,n_thetas,n_t)
     thetas = linspace(0,180,n_thetas);
     ts = linspace(-90,90,n_t);
     c = size(Image)/2;
     result = zeros(n_thetas,n_t);
     size(result);
     for i=1:length(thetas)
-        theta= thetas(i)*pi/180;
-        %size(result(i))
-        %result(i) =
-        res = myIntegration2(Image,ts,theta,step_size);
+        theta= thetas(i);
+        res = myIntegration2(Image,theta*pi/180,1);
         result(i,:) = res;
-        size(res)
     end
     y = result;
 end

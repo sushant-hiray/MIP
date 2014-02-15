@@ -3,8 +3,7 @@
 (a) 
 
 Value of delta`s`:
-The step size should be such that most of the desired values of `t` should be multiples of the step size.
-Thus, 
+The step size should be such that most of the desired values of `t` should be multiples of the step size. 
 
 Interpolation Scheme used:
 We used the default interpolation scheme of Bilinear Interpolation in `interp2`
