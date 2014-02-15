@@ -6,7 +6,7 @@ function y = myRadonTrans(Image,n_thetas,n_t)
     size(result);
     for i=1:length(thetas)
         theta= thetas(i);
-        res = myIntegration2(Image,theta*pi/180);
+        res = myIntegration2(Image,theta*pi/180,1);
         result(i,:) = res;
     end
     y = result;

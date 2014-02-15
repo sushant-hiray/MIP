@@ -1,10 +1,10 @@
-function y = myIntegration2(Image,theta)
+function y = myIntegration2(Image,theta,step_size)
     [m,n] = size(Image);
     c = size(Image)/2;
     R = [[cos(theta) -sin(theta)],[sin(theta) cos(theta)]];
     
     %size(Image)
-    [X,Y] = meshgrid(1:m,1:n);
+    [X,Y] = meshgrid(1:step_size:m,1:step_size:n);
     %[X,Y] = meshgrid(1:step_size:m,1:step_size:n);
     
     %size(X)

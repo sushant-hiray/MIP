@@ -7,7 +7,7 @@ function y = myIntegration(Image,t,theta,step_size)
     %[X,Y] = meshgrid(1:m,1:n);
     [X,Y] = meshgrid(1:step_size:m,1:step_size:n);
     
-    %size(X)
+    size(X)
     X1 = X - c(1);
     Y1 = Y - c(2);
     X2 = c(1) + (X1)*cos(theta) -(Y1)*sin(theta);
@@ -18,6 +18,7 @@ function y = myIntegration(Image,t,theta,step_size)
     size(Z);
     cor =  floor((t+n/2)/step_size);
     a =sum(Z);
+    size(Z)
     y = a(cor);
 end
 
