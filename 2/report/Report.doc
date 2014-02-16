@@ -1,0 +1,17 @@
+2)
+
+(a)
+Comparison amongst the same filter in the case when L=wmax and L=wmax/2
+In both the cases of cosine filtering and shepp logan filtering, we can observe that 
+the images in case of wmax are much clearer (grayscale) and approximate the colors
+(in colorscale wrt to original image) as compared to that of the case when L=wmax/2.
+
+This is justified as in case of wmax/2 we attenuate the frequencies higher than wmax/2, but 
+since the highest freq observed in fft is wmax, we are essentially attenuating important datapoints.
+
+In case of wmax we attenuate frequencies higher than wmax, and thus we donot attenuate
+datapoints which are important and hence the image is sharper/clearer in this case.
+
+Comparison amongst the filters themselves:
+As can be clearly seen from the Cosine filter is better than the shepp logan 
+which is better than the ram lak filter.

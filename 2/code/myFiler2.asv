@@ -1,0 +1,34 @@
+function y = myFiler2(Image)
+
+phantomData = Image
+N=size(Image,1);
+theta = 0:179;
+N_theta = length(theta);
+[R,xp] = radon(phantomData,theta);
+
+% make a Ram-Lak filter. it's just abs(f).
+N1 = length(xp);
+freqs=linspace(-1, 1, N1).';
+wmax=100;
+my_filter = arrayfun(@(x) sinc(x*05*pi/wmax)*abs(x),freqs);
+my_filter = repmat(my_filter, [1 N_theta]);
+% do my own FT domain filtering
+ft_R = fftshift(fft(R,[],1),1);
+disp(size(ft_R))
+filteredProj = ft_R .* my_filter;
+filteredProj = ifftshift(filteredProj,1);
+ift_R = real(ifft(filteredProj,[],1));
+
+% tell matlab to do inverse FBP without a filter
+I1 = iradon(ift_R, theta, 'linear', 'none', 1.0, N);
+
+subplot(1,3,1);imagesc( real(I1) ); title('Ram Lak filtering')
+colormap(gray(256)); axis image; axis off
+
+% for comparison, ask matlab to use their Ram-Lak filter implementation
+I2 = iradon(R, theta, 'linear', 'Ram-Lak', 1.0, N);
+
+subplot(1,2,2);imagesc( real(I2) ); title('Matlab filtering')
+colormap(gray(256)); axis image;
+
+filter = arrayfun(@(x) sinc(x*05*pi/wmax)*x*abs(x),FFTImage); % shep logan
