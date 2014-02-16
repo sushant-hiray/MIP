@@ -19,5 +19,5 @@ end
 function c=derY(I)
     x = I(1);
     y = I(2);
-    c = -100*2*(y-x*x)*2*x;
+    c = 100*2*(y-x*x)
 end
