@@ -8,7 +8,7 @@ N_theta = length(theta);
 % make a Ram-Lak filter
 N1 = length(xp);
 freqs=linspace(-1, 1, N1).';
-my_filter = arrayfun(@(x) abs(x),freqs);
+my_filter = arrayfun(@(x) ramlak(x),freqs);
 my_filter = repmat(my_filter, [1 N_theta]);
 % apply fft in one dimension and use fftshift to bring 0 frequency to
 % center
@@ -35,3 +35,12 @@ colormap(gray(256)); axis image;
 
 y = I1;
 
+
+function y = ramlak(x)
+wmax= pi;
+    if abs(x) > wmax
+      y =  0;
+    else
+       y= abs(x);
+
+   end
