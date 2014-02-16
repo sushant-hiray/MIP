@@ -3,7 +3,10 @@ function y = myFilterCosineFilter(Image,L)
 RadonImage = radon(Image);
 FFTImage = fft2(RadonImage);
 
-filter = arrayfun(@(x) cos(x*05*pi/L)*x*abs(x),FFTImage); % shep logan
+absW = (arrayfun(@(x) abs(x),FFTImage));
+wmax= max(max(absW))
+
+filter = arrayfun(@(x) cos(x*05*pi/wmax)*x*abs(x),FFTImage);
 
 IFFTImage = ifft2(filter);
 
