@@ -1,4 +1,4 @@
-function y = myFilterShepLogan(Image)
+function y = myFilterShepLogan(Image,wmax)
 
 N=size(Image,1);
 theta = 0:179;
@@ -7,9 +7,8 @@ N_theta = length(theta);
 
 N1 = length(xp);
 freqs=linspace(-1, 1, N1).';
-wmax=2*pi;
 %shepp logan filter
-my_filter = arrayfun(@(x) sinc(x*05*pi/wmax)*abs(x),freqs); % shep logan
+my_filter = arrayfun(@(x) shepplogan(x,wmax),freqs); % shep logan
 my_filter = repmat(my_filter, [1 N_theta]);
 % apply fft in one dimension and use fftshift to bring 0 frequency to
 % center
@@ -36,4 +35,10 @@ colormap(gray(256)); axis image;
 
 y = I1;
 
+function y = shepplogan(x,wmax)
+    if abs(x) > wmax
+      y =  0;
+    else
+       y= sinc(x*05*pi/wmax)*abs(x);
 
+   end
