@@ -7,8 +7,7 @@ N_theta = length(theta);
 
 N1 = length(xp);
 freqs=linspace(-1, 1, N1).';
-
-wmax=100;
+wmax=2*pi;
 %shepp logan filter
 my_filter = arrayfun(@(x) sinc(x*05*pi/wmax)*abs(x),freqs); % shep logan
 my_filter = repmat(my_filter, [1 N_theta]);

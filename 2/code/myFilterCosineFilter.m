@@ -9,7 +9,8 @@ N_theta = length(theta);
 N1 = length(xp);
 freqs=linspace(-1, 1, N1).';
 %cosine filter
-my_filter = arrayfun(@(x) cos(x*05*pi/1000)*abs(x),freqs);
+wmax= pi
+my_filter = arrayfun(@(x) cos(x*05*pi/wmax)*abs(x),freqs);
 my_filter = repmat(my_filter, [1 N_theta]);
 % apply fft in one dimension and use fftshift to bring 0 frequency to
 % center
