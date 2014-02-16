@@ -7,9 +7,8 @@ N_theta = length(theta);
 
 N1 = length(xp);
 freqs=linspace(-1, 1, N1).';
-
+%cosine filter
 wmax=100;
-%shepp logan filter
 my_filter = arrayfun(@(x) sinc(x*05*pi/wmax)*abs(x),freqs); % shep logan
 my_filter = repmat(my_filter, [1 N_theta]);
 % apply fft in one dimension and use fftshift to bring 0 frequency to
@@ -35,6 +34,6 @@ colormap(gray(256)); axis image;
 subplot(1,2,1);imagesc( real(Image) ); title('Original Image')
 colormap(gray(256)); axis image;
 
-y = I1;
+y = I1
 
 

@@ -1,0 +1,24 @@
+function y = myFilter(Image)
+
+RadonImage = radon(Image);
+FFTImage = fft2(RadonImage);
+
+filter = arrayfun(@(x) x*abs(x),FFTImage);
+%filter = arrayfun(@(x) x*abs(x),FFTImage);
+%filter = arrayfun(@(x) x*abs(x),FFTImage);
+
+IFFTImage = ifft2(filter);
+IRadonImage = iradon(IFFTImage,0:179);
+
+
+subplot(1,3,1), imshow(P), title('Original')
+subplot(1,3,2), imshow(I1), title('Filtered backprojection')
+subplot(1,3,3), imshow(I2,[]), title('Unfiltered backprojection')
+%
+%myNumOfColors = 200;
+%myColorScale = [ [0:1/myNumOfColors:1]' , [0:1/myNumOfColors:1]' , [0:1/myNumOfColors:1]' ];
+%imagesc(IRadonImage);
+%colormap (myColorScale); colormap jet; colorbar;
+%}
+end
+
