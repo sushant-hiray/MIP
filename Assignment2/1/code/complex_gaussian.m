@@ -1,0 +1,1 @@
+function y = mrf_g3(A,gamma)
