@@ -1,0 +1,6 @@
+function y = gradesc(In, step, beta, grf)
+prev = In
+if strcmp(grf,'quad') == 1
+    temp = prev
+    temp = mrf_quad(prev) + complex_gaussian(In,prev,1)
+end
