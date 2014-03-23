@@ -28,8 +28,8 @@ while(prosteriorProb < threshold )
     prevGrad =temp;
     
     prosteriorProb =  mrf_quad_prob(prev,beta).*complex_gaussian_prob(In,prev,1,beta);
-    %prosteriorProb = prosteriorProb./ complex_gaussian_prob(In,expIm,1,0);
-    %disp(max(prosteriorProb(:)));
+    prosteriorProb = prosteriorProb./ complex_gaussian_prob(In,expIm,1,0);
+    disp(max(prosteriorProb(:)));
     %disp(min(prosteriorProb(:)));
     %imagesc(real(prev));
     %result = input('input please');
@@ -52,7 +52,7 @@ a = exp(-((1-beta)*(abs(Y - X).^2))/(sigma*sigma));
 %a = a./(sigma*sigma*pi);
 a = a.*(1-beta)*(1-beta);
 a = a./(sigma*sigma*pi);
-disp(max(a(:)));
+%disp(max(a(:)));
 z=a;
 
 
