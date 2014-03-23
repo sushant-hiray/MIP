@@ -18,7 +18,7 @@ l1 = arrayfun(@(x) check(x,gamma),l1);
 r1 = arrayfun(@(x) check(x,gamma),r1);
 d1 = arrayfun(@(x) check(x,gamma),d1);
 
-y = u1+d1+l1+r1
+y = u1+d1+l1+r1;
 
 
 function z = check(x,g)
