@@ -13,5 +13,15 @@ In case of wmax we attenuate frequencies higher than wmax, and thus we donot att
 datapoints which are important and hence the image is sharper/clearer in this case.
 
 Comparison amongst the filters themselves:
-As can be clearly seen from the Cosine filter is better than the shepp logan 
-which is better than the ram lak filter.
+As can be clearly seen from the images, Cosine filter is better than the shepp logan.
+Cosine betters shepp logan because it doesn't amplify higher frequencies.
+
+Since there is no noise in the data, the ram lak filter gives the best image in this case.
+
+Also, even though there is no noise in the data, cosine and shepp logan filter change the fft values corresponding
+to each frequency, hence the image formed by shepp logan and the cosine filters is not better than ramlak.
+
+
+When noise is added, ramlak performs worse than cosine and shepplogan as it doesn't suppress very high frequencies.
+In this situation cosine and shepp logan perform better.
+
