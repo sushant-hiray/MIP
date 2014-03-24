@@ -16,18 +16,22 @@ while(prosteriorProb < threshold )
     if strcmp(grf,'quad') == 1
         temp = -((1-beta)*complex_gaussian(In,prev,1) + beta*mrf_quad(prev));
         prev = prev + (1-momentum)*step*temp +momentum*prevGrad;
+        prosteriorProb =  mrf_quad_prob(prev,beta).*complex_gaussian_prob(In,prev,1,beta);
         
     elseif strcmp(grf,'huber') == 1
         temp = (1-beta)*complex_gaussian(In,prev,1) + beta*mrf_huber(prev,gamma);
         prev = prev + step*temp;
+        prosteriorProb =  mrf_huber_prob(prev,beta,gamma).*complex_gaussian_prob(In,prev,1,beta);
 
     elseif strcmp(grf,'g3') == 1
         temp = (1-beta)*complex_gaussian(In,prev,1) + beta*mrf_g3(prev,gamma);
         prev = prev + step*temp;
+        prosteriorProb =  mrf_g3_prob(prev,beta).*complex_gaussian_prob(In,prev,1,beta);
+        
     end
     prevGrad =temp;
     
-    prosteriorProb =  mrf_quad_prob(prev,beta).*complex_gaussian_prob(In,prev,1,beta);
+    
     prosteriorProb = prosteriorProb./ complex_gaussian_prob(In,expIm,1,0);
     disp(max(prosteriorProb(:)));
     %disp(min(prosteriorProb(:)));
@@ -78,10 +82,66 @@ b = a.*(1/y);
 z=b;
 
 
+function z = mrf_huber_prob(A,beta,gamma)
+
+u = circshift(A,[-1,0]);
+d = circshift(A,[1,0]);
+l = circshift(A,[0,-1]);
+r = circshift(A,[0,1]);
+
+u1 = arrayfun(@(x) check(x,gamma),u1);
+l1 = arrayfun(@(x) check(x,gamma),l1);
+r1 = arrayfun(@(x) check(x,gamma),r1);
+d1 = arrayfun(@(x) check(x,gamma),d1);
+
+
+a = exp(-beta*(u1+l1+r1+d1));
+y = sum(a(:));
+%disp('y is ');
+%disp(y);
+b = a.*(1/y);
+%disp(max(b(:)));
+z=b;
 
 
 
 
+function z = check(x,g)
+    if x > g
+      z =  g*x - 0.5*g*g;
+    else
+      z = 0.5*x*x;
+    end
+
+
+
+
+
+function y = mrf_g3_prob(A,gamma, beta)
+
+%A is Noisy Image
+
+u = circshift(A,[-1,0]);
+d = circshift(A,[1,0]);
+l = circshift(A,[0,-1]);
+r = circshift(A,[0,1]);
+
+u1 = arrayfun(@(x) check_g3(x,gamma),u1);
+l1 = arrayfun(@(x) check_g3(x,gamma),l1);
+r1 = arrayfun(@(x) check_g3(x,gamma),r1);
+d1 = arrayfun(@(x) check_g3(x,gamma),d1);
+
+
+a = exp(-beta*(u1+l1+r1+d1));
+y = sum(a(:));
+%disp('y is ');
+%disp(y);
+b = a.*(1/y);
+%disp(max(b(:)));
+z=b;
+
+function z = check_g3(x,g)
+z = g*x - g*g*log(1+(x/g));
 
 
 
