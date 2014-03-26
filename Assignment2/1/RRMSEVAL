@@ -1,9 +1,54 @@
+b = 0.6
+a = 0.2
+
+a,b
 Quad RRMSE 
-0.9475 + 0.0005i
+0.8199 + 0.0004i
 
 huber RRMSE 
-0.7584 + 0.0004i
+0.7278 + 0.0004i
 
 g3 RRMSE 
- 0.7592 + 0.0004i
+ 0.7542 + 0.0004i
 
+
+1.2a,b
+Quad RRMSE 
+0.8609 + 0.0004i
+
+huber RRMSE 
+0.8745 + 0.0004i
+
+g3 RRMSE 
+  0.8029 + 0.0004i
+
+a,1.2b
+Quad RRMSE 
+0.8199 + 0.0004i
+
+huber RRMSE 
+0.7834 + 0.0004i
+
+g3 RRMSE 
+ 0.7549 + 0.0004i
+
+
+0.8a,b
+Quad RRMSE 
+0.7317 + 0.0004i
+
+huber RRMSE 
+0.6364 + 0.0003i
+
+g3 RRMSE 
+  0.6805 + 0.0003i
+
+a,0.8b
+Quad RRMSE 
+0.8199 + 0.0004i
+
+huber RRMSE 
+0.7177 + 0.0004i
+
+g3 RRMSE 
+ 0.7536 + 0.0004i
