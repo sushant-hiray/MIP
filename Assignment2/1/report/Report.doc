@@ -1,0 +1,17 @@
+﻿Learning Rate: 0.1, Beta: 0.6, Gamma:0.2
+1) RRMSE values: 
+Quad RRMSE 
+0.9475 + 0.0005i
+
+huber RRMSE 
+0.7584 + 0.0004i
+
+g3 RRMSE 
+0.7592 + 0.0004i
+
+2) 
+
+3) The relevant images can be found in the images folder namely(noisy,alltogether,quad-0,quad-1)
+
+4) The relevant images can be found in the images folder
+namely(quad-obj.png, g3-obj.png, huber-obj.png) 
