@@ -1,18 +1,27 @@
 function y = gradesc(In, step, beta, gamma, grf,momentum,expIm)
-threshold = 0.6;
+threshold = 0.08;
 prev = In;
 temp = -((1-beta)*complex_gaussian(In,prev,1) + beta*mrf_quad(prev));
-%prev = prev + step*temp;
-disp('hi11');
+prev = prev + step*temp;
+
 prevGrad =temp;
-mintemp =norm(temp);
+
 iteration =0;
-abc = complex_gaussian_prob(In,expIm,1,0);
-%disp(max(abc(:)));
+
+
 prosteriorProb =  mrf_quad_prob(prev,beta).*complex_gaussian_prob(In,prev,1,beta);
-while(prosteriorProb < threshold )
+
+temp = -((1-beta)*complex_gaussian(In,prev,1) + beta*mrf_quad(prev));
+tempV = temp(:);
+prevGradV = prevGrad(:);
+prev = prev + step*temp;
+
+
+while(norm(abs(temp-prevGrad),2)/norm(abs(prevGrad),2) > threshold)
     iteration = iteration +1;
-    
+    %disp(iteration);
+    prevGrad =temp;
+    prevGradV = prevGrad(:);
     if strcmp(grf,'quad') == 1
         temp = -((1-beta)*complex_gaussian(In,prev,1) + beta*mrf_quad(prev));
         prev = prev + (1-momentum)*step*temp +momentum*prevGrad;
@@ -29,20 +38,13 @@ while(prosteriorProb < threshold )
         prosteriorProb =  mrf_g3_prob(prev,beta).*complex_gaussian_prob(In,prev,1,beta);
         
     end
-    prevGrad =temp;
+    tempV = temp(:);
     
     
     prosteriorProb = prosteriorProb./ complex_gaussian_prob(In,expIm,1,0);
-    disp(max(prosteriorProb(:)));
-    %disp(min(prosteriorProb(:)));
-    %imagesc(real(prev));
-    %result = input('input please');
-
-    if iteration > 10
-        disp(max(prosteriorProb(:)));
-        disp(min(prosteriorProb(:)));
-        prosteriorProb = 1;
-    end
+    %disp(max(prosteriorProb(:)));
+    abc = norm(abs(tempV-prevGradV),2)/norm(abs(prevGradV),2)
+   
 
 end
 y = prev;
@@ -146,4 +148,13 @@ z = g*x - g*g*log(1+(x/g));
 
 
 
+
+function z = RRMSE(A,B)
+X = (abs(A) - abs(B)).^2;
+X = sum(X(:));
+X = X ^ (1/2);
+Y = abs(A)^.2;
+Y = sum(Y(:));
+Y = Y ^ (0.5);
+z = X/Y;
 
