@@ -1,12 +1,12 @@
-function y = gradesc(In, step, beta, gamma, grf,momentum,expIm)
-threshold = 0.08;
+function y = gradesc(In, step, beta, gamma, grf,momentum)
+threshold = 0.1;
 prev = In;
 temp = -((1-beta)*complex_gaussian(In,prev,1) + beta*mrf_quad(prev));
 prev = prev + step*temp;
 
 prevGrad =temp;
 
-iteration =0;
+iteration =1;
 
 
 prosteriorProb =  mrf_quad_prob(prev,beta).*complex_gaussian_prob(In,prev,1,beta);
@@ -16,10 +16,11 @@ tempV = temp(:);
 prevGradV = prevGrad(:);
 prev = prev + step*temp;
 
-
-while(norm(abs(temp-prevGrad),2)/norm(abs(prevGrad),2) > threshold)
+abc = norm(abs(tempV-prevGradV),2)/norm(abs(prevGradV),2)
+ObjX =[abc];   
+ObjY =[iteration];
+while(abc > threshold)
     iteration = iteration +1;
-    %disp(iteration);
     prevGrad =temp;
     prevGradV = prevGrad(:);
     if strcmp(grf,'quad') == 1
@@ -29,24 +30,31 @@ while(norm(abs(temp-prevGrad),2)/norm(abs(prevGrad),2) > threshold)
         
     elseif strcmp(grf,'huber') == 1
         temp = (1-beta)*complex_gaussian(In,prev,1) + beta*mrf_huber(prev,gamma);
-        prev = prev + step*temp;
+        prev = prev + (1-momentum)*step*temp +momentum*prevGrad;
         prosteriorProb =  mrf_huber_prob(prev,beta,gamma).*complex_gaussian_prob(In,prev,1,beta);
 
     elseif strcmp(grf,'g3') == 1
         temp = (1-beta)*complex_gaussian(In,prev,1) + beta*mrf_g3(prev,gamma);
-        prev = prev + step*temp;
-        prosteriorProb =  mrf_g3_prob(prev,beta).*complex_gaussian_prob(In,prev,1,beta);
+        prev = prev + (1-momentum)*step*temp +momentum*prevGrad;
+        prosteriorProb =  mrf_g3_prob(prev,gamma,beta).*complex_gaussian_prob(In,prev,1,beta);
         
     end
     tempV = temp(:);
+    ObjX = [ObjX iteration];
+    ObjY = [ObjY abc];
     
-    
-    prosteriorProb = prosteriorProb./ complex_gaussian_prob(In,expIm,1,0);
+    %prosteriorProb = prosteriorProb./ complex_gaussian_prob(In,expIm,1,0);
     %disp(max(prosteriorProb(:)));
-    abc = norm(abs(tempV-prevGradV),2)/norm(abs(prevGradV),2)
-   
-
+    abc = norm(abs(tempV-prevGradV),2)/norm(abs(prevGradV),2);
+    
 end
+
+size(ObjX);
+size(ObjY);
+%plot(ObjX,ObjY);
+
+
+
 y = prev;
 
 
@@ -83,7 +91,6 @@ b = a.*(1/y);
 %disp(max(b(:)));
 z=b;
 
-
 function z = mrf_huber_prob(A,beta,gamma)
 
 u = circshift(A,[-1,0]);
@@ -91,10 +98,10 @@ d = circshift(A,[1,0]);
 l = circshift(A,[0,-1]);
 r = circshift(A,[0,1]);
 
-u1 = arrayfun(@(x) check(x,gamma),u1);
-l1 = arrayfun(@(x) check(x,gamma),l1);
-r1 = arrayfun(@(x) check(x,gamma),r1);
-d1 = arrayfun(@(x) check(x,gamma),d1);
+u1 = arrayfun(@(x) check(x,gamma),u);
+l1 = arrayfun(@(x) check(x,gamma),l);
+r1 = arrayfun(@(x) check(x,gamma),r);
+d1 = arrayfun(@(x) check(x,gamma),d);
 
 
 a = exp(-beta*(u1+l1+r1+d1));
@@ -128,13 +135,13 @@ d = circshift(A,[1,0]);
 l = circshift(A,[0,-1]);
 r = circshift(A,[0,1]);
 
-u1 = arrayfun(@(x) check_g3(x,gamma),u1);
-l1 = arrayfun(@(x) check_g3(x,gamma),l1);
-r1 = arrayfun(@(x) check_g3(x,gamma),r1);
-d1 = arrayfun(@(x) check_g3(x,gamma),d1);
+u1 = arrayfun(@(x) check_g3(x,gamma),u);
+l1 = arrayfun(@(x) check_g3(x,gamma),l);
+r1 = arrayfun(@(x) check_g3(x,gamma),r);
+d1 = arrayfun(@(x) check_g3(x,gamma),d);
 
 
-a = exp(-beta*(u1+l1+r1+d1));
+a= exp(-beta*(u1+l1+r1+d1));
 y = sum(a(:));
 %disp('y is ');
 %disp(y);
@@ -149,12 +156,13 @@ z = g*x - g*g*log(1+(x/g));
 
 
 
-function z = RRMSE(A,B)
-X = (abs(A) - abs(B)).^2;
-X = sum(X(:));
-X = X ^ (1/2);
-Y = abs(A)^.2;
-Y = sum(Y(:));
-Y = Y ^ (0.5);
-z = X/Y;
+
+
+
+
+
+
+
+
+
 
