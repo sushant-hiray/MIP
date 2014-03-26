@@ -51,7 +51,7 @@ end
 
 size(ObjX);
 size(ObjY);
-%plot(ObjX,ObjY);
+plot(ObjX,ObjY);
 
 
 
