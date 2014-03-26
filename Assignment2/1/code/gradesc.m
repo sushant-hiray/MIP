@@ -1,5 +1,5 @@
 function y = gradesc(In, step, beta, gamma, grf,momentum)
-threshold = 0.1;
+threshold = 0.4;
 prev = In;
 temp = -((1-beta)*complex_gaussian(In,prev,1) + beta*mrf_quad(prev));
 prev = prev + step*temp;
@@ -25,17 +25,17 @@ while(abc > threshold)
     prevGradV = prevGrad(:);
     if strcmp(grf,'quad') == 1
         temp = -((1-beta)*complex_gaussian(In,prev,1) + beta*mrf_quad(prev));
-        prev = prev + (1-momentum)*step*temp +momentum*prevGrad;
+        prev = prev + step*temp + momentum*prevGrad;
         prosteriorProb =  mrf_quad_prob(prev,beta).*complex_gaussian_prob(In,prev,1,beta);
         
     elseif strcmp(grf,'huber') == 1
         temp = (1-beta)*complex_gaussian(In,prev,1) + beta*mrf_huber(prev,gamma);
-        prev = prev + (1-momentum)*step*temp +momentum*prevGrad;
+        prev = prev + step*temp+ momentum*prevGrad ;
         prosteriorProb =  mrf_huber_prob(prev,beta,gamma).*complex_gaussian_prob(In,prev,1,beta);
 
     elseif strcmp(grf,'g3') == 1
         temp = (1-beta)*complex_gaussian(In,prev,1) + beta*mrf_g3(prev,gamma);
-        prev = prev + (1-momentum)*step*temp +momentum*prevGrad;
+        prev = prev + step*temp + momentum*prevGrad;
         prosteriorProb =  mrf_g3_prob(prev,gamma,beta).*complex_gaussian_prob(In,prev,1,beta);
         
     end
@@ -45,7 +45,7 @@ while(abc > threshold)
     
     %prosteriorProb = prosteriorProb./ complex_gaussian_prob(In,expIm,1,0);
     %disp(max(prosteriorProb(:)));
-    abc = norm(abs(tempV-prevGradV),2)/norm(abs(prevGradV),2);
+    abc = norm(abs(tempV-prevGradV),2)/norm(abs(prevGradV),2)
     
 end
 
