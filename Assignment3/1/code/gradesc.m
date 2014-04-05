@@ -60,7 +60,7 @@ y = prev;
 
 
 function z = complex_gaussian_prob(Y,X,S,sigma,beta)
-a = exp(-((1-beta)*(abs(Y - S*fft2(X)).^2))/(sigma*sigma));
+a = exp(-((1-beta)*(abs(Y - fft2(X)).^2))/(sigma*sigma));
 %a = a./(sigma*sigma*pi);
 a = a.*(1-beta)*(1-beta);
 a = a./(sigma*sigma*pi);
