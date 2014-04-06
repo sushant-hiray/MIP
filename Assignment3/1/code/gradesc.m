@@ -10,13 +10,12 @@ iteration =1;
 
 
 prosteriorProb =  mrf_quad_prob(prev,beta).*complex_gaussian_prob(In,prev,S,1,beta);
-
 temp = -((1-beta)*complex_gaussian(In,prev,S,1) + beta*mrf_quad(prev));
 tempV = temp(:);
 prevGradV = prevGrad(:);
 prev = prev + step*temp;
 
-abc = norm(abs(tempV-prevGradV),2)/norm(abs(prevGradV),2)
+abc = norm(abs(tempV-prevGradV),2)/norm(abs(prevGradV),2);
 ObjX =[abc];   
 ObjY =[iteration];
 while(abc > threshold)
@@ -60,7 +59,7 @@ y = prev;
 
 
 function z = complex_gaussian_prob(Y,X,S,sigma,beta)
-a = exp(-((1-beta)*(abs(Y - fft2(X)).^2))/(sigma*sigma));
+a = exp(-((1-beta)*(abs(Y - fft2(X).*S).^2))/(sigma*sigma));
 %a = a./(sigma*sigma*pi);
 a = a.*(1-beta)*(1-beta);
 a = a./(sigma*sigma*pi);
