@@ -50,8 +50,10 @@ size(ObjX);
 size(ObjY);
 %plot(ObjX,ObjY);
 
-
-
+RRMMSEI = RRMSE(In,prev);
+disp(grf)
+disp(RRMMSEI)
+imagesc([ abs(In) abs(prev)]); axis equal tight;
 y = prev;
 
 
@@ -148,3 +150,14 @@ z=b;
 
 function z = check_g3(x,g)
 z = g*x - g*g*log(1+(x/g));
+
+
+
+function z = RRMSE(A,B)
+X = (abs(A) - abs(B)).^2;
+X = sum(X(:));
+X = X ^ (1/2);
+Y = abs(A)^.2;
+Y = sum(Y(:));
+Y = Y ^ (0.5);
+z = X/Y;
