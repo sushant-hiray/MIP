@@ -15,6 +15,7 @@ function [d, Z] = multi_procrustes(I,n,no_of_samples)
         normX = sqrt(ssqX);
 
 
+<<<<<<< HEAD
 
         % centering and normalising the data
         for i = 1:no_of_samples,
@@ -36,13 +37,6 @@ function [d, Z] = multi_procrustes(I,n,no_of_samples)
         disp(j);
         j=j+1;
     end
-    
-    
-    
-    
-
-
-
 
 function z = center(X)
     [a, b]   = size(X);
@@ -62,3 +56,6 @@ function z = rotate(base,Y0,muX,normX,n)
 
 
 	z = normX * Y0 * T + double(repmat(muX, n, 1));
+
+
+%  plot(x1(:,1),x1(:,2),'r*', x2(:,1),x2(:,2),'g*', Z(:,1),Z(:,2),'bx');
