@@ -42,3 +42,5 @@ A = double(X0') * Y0;
 T = M * L';
 
 Z = normX * Y0 * T + double(repmat(muX, n, 1));
+
+%  plot(x1(:,1),x1(:,2),'r*', x2(:,1),x2(:,2),'g*', Z(:,1),Z(:,2),'bx');

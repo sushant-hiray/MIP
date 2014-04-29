@@ -3,7 +3,7 @@ function [d, Z] = multi_procrustes(I,n,no_of_samples)
 	d = 1;
 	Z = zeros(n,2,no_of_samples);
 
-	
+
 	muX = mean(I(:,:,1),1);
 	ssqX = sum(I(:,:,1).^2,1);
     ssqX = sum(ssqX);
@@ -45,3 +45,6 @@ function z = rotate(base,Y0,muX,normX,n)
 
 
 	z = normX * Y0 * T + double(repmat(muX, n, 1));
+
+
+%  plot(x1(:,1),x1(:,2),'r*', x2(:,1),x2(:,2),'g*', Z(:,1),Z(:,2),'bx');
