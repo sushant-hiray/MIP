@@ -1,4 +1,4 @@
-function [d, Y] = multi_procrustes(I,n,no_of_samples)
+function [d, Y] = tangent_space_projection(I,n,no_of_samples)
 	% array fun
 	d = 1;
 	Z = zeros(n,2,no_of_samples);
@@ -34,7 +34,27 @@ function [d, Y] = multi_procrustes(I,n,no_of_samples)
         disp(j);
         j=j+1;
     end
-    Y = mean(Z,3);
+    Y = Z(:,:,2);
+    % now make all vectors to lie on the tangent space
+    T = zeros(2*n,no_of_samples);
+    temp = Z(:,:,i);
+    temp =temp(:);
+    T(:,1) = temp';
+    for i = 2:no_of_samples,
+        temp  =Z(:,:,i);
+        temp = temp(:);
+        T(:,i) = temp';
+        alpha = (mean(T(:,1))^2)/((T(:,1)'* T(:,i)));
+        T(:,i) =  alpha* T(:,i);
+    end
+    Y = mean (T,2);
+    [Y,padded] = vec2mat(Y,2);
+    
+    
+    
+   
+    
+    
 
 function z = center(X)
     [a, b]   = size(X);
@@ -54,6 +74,3 @@ function z = rotate(base,Y0,muX,normX,n)
 
 
 	z = normX * Y0 * T + double(repmat(muX, n, 1));
-
-
-%  plot(x1(:,1),x1(:,2),'r*', x2(:,1),x2(:,2),'g*', Z(:,1),Z(:,2),'bx');

@@ -1,0 +1,11 @@
+function [Y] = multi_procrustes(I,n,no_of_samples)
+	% array fun
+    m = mean(I,3)
+    covar = zeros(n,n);
+    for i = 1:no_of_samples,
+        Z(:,:,i) = I(:,:,i) - m;
+        covar = covar + Z(:,1,i)*Z(:,1,i)';
+    end
+    
+    
+    
