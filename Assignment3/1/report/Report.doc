@@ -1,0 +1,80 @@
+﻿Learning Rate: 0.1, Beta: 0.7, Gamma:0.9
+1) RRMSE values: 
+Quad RRMSE 
+ 1.3761 - 0.0027i
+
+huber RRMSE 
+ 0.3146 - 0.0006i
+
+g3 RRMSE 
+  0.4447 - 0.0009i
+
+
+
+
+2) 
+Quad
+====
+beta=1, independent of gamma
+	y=gradesc(ifft2(imageKspaceData),imageKspaceMask, 0.1,1,0.1,'quad',0);
+
+1.2a,b
+-------
+Quad RRMSE 
+ 0.9652 - 0.0019i
+
+0.8a,b
+-------
+Quad RRMSE 
+ 1.1781 - 0.0023i
+
+
+Huber
+=====
+
+
+a,1.2b
+------
+Quad RRMSE 
+0.8199 + 0.0004i
+
+huber RRMSE 
+0.7834 + 0.0004i
+
+g3 RRMSE 
+ 0.7649 + 0.0004i
+
+
+
+
+
+0.8a,b
+------
+Quad RRMSE 
+0.9475 + 0.0005i
+
+huber RRMSE 
+0.7584 + 0.0004i
+
+g3 RRMSE 
+0.7592 + 0.0004i
+
+
+
+a,0.8b
+------
+Quad RRMSE 
+0.8199 + 0.0004i
+
+huber RRMSE 
+0.7177 + 0.0004i
+
+g3 RRMSE 
+ 0.7536 + 0.0004i
+
+
+3) The relevant images can be found in the images folder namely(noisy,alltogether,quad-0,quad-1)
+For the alltogether image, the first image is noisy image, the second is using quad, the third is using huber, the fourth is using g3.
+
+4) The relevant images can be found in the images folder
+namely(quad-obj.png, g3-obj.png, huber-obj.png) 
