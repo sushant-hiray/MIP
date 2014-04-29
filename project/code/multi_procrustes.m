@@ -2,27 +2,44 @@ function [d, Z] = multi_procrustes(I,n,no_of_samples)
 	% array fun
 	d = 1;
 	Z = zeros(n,2,no_of_samples);
+    
+    Z =I;
+    
+    base = I(:,:,1);
+    prevbase = ones(n,2);
+    j=0;
+    while(j<10)
+        muX = mean(base,1);
+        ssqX = sum(base.^2,1);
+        ssqX = sum(ssqX);
+        normX = sqrt(ssqX);
 
-	
-	muX = mean(I(:,:,1),1);
-	ssqX = sum(I(:,:,1).^2,1);
-    ssqX = sum(ssqX);
-    normX = sqrt(ssqX);
 
-	% centering and normalising the data
-	for i = 1:no_of_samples,
-	  	centered = center(I(:,:,i));
-		d = 1;
-		Z(:,:,i) = centered;
-	end;
 
-	mean_sample = Z(:,:,1);
+        % centering and normalising the data
+        for i = 1:no_of_samples,
+            centered = center(I(:,:,i));
+            d = 1;
+            Z(:,:,i) = centered;
+        end;
 
-	for i = 2:no_of_samples,
-	  	rotated = rotate(mean_sample,I(:,:,i),muX,normX,n);
-		d = 1;
-		Z(:,:,i) = rotated;
-	end;
+        mean_sample = Z(:,:,1);
+
+        for i = 2:no_of_samples,
+            rotated = rotate(mean_sample,I(:,:,i),muX,normX,n);
+            d = 1;
+            Z(:,:,i) = rotated;
+        end;
+        % should update the new mean now
+        prevbase = base;
+        base  = mean(Z,3);
+        disp(j);
+        j=j+1;
+    end
+    
+    
+    
+    
 
 
 
