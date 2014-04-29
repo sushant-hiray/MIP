@@ -10,7 +10,10 @@ ellipse_y_r  = Y0 + b*sin( theta_grid );
 %Define a rotation matrix
 R = [ cos(phi) sin(phi); -sin(phi) cos(phi) ];
 
-%let's rotate the ellipse to some angle phii
+%let's rotate the ellipse to some angle phi
 r_ellipse = R * [ellipse_x_r;ellipse_y_r];
 
-y = r_ellipse;
+y = r_ellipse';
+
+% plot using the following command:
+% plot(r_ellipse(1,:),r_ellipse(2,:),'+r')
