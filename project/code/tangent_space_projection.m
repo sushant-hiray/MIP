@@ -1,4 +1,4 @@
-function [d, Y] = tangent_space_projection(I,n,no_of_samples)
+function  Y = tangent_space_projection(I,n,no_of_samples)
 	% array fun
 	d = 1;
 	Z = zeros(n,2,no_of_samples);

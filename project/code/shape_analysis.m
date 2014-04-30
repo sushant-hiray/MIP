@@ -1,4 +1,4 @@
-function shape_analysis(no_of_samples)
+function shape_analysis(no_of_samples,method)
     s = 80;
     e = 100;
     phi0 = 0;
@@ -14,7 +14,7 @@ function shape_analysis(no_of_samples)
     hold on
     for i = 1:no_of_samples,
         a1  =  plotellipse(a,b,X0,Y0,phi);
-        %plot(a1(:,1),a1(:,2),'r+');
+        plot(a1(:,1),a1(:,2),'r+');
         size(a1)
         I(:,:,i) = a1;
         a = s + (s-e).*rand(1,1);
@@ -23,9 +23,14 @@ function shape_analysis(no_of_samples)
         Y0 = 100*rand(1,1);
         b = a/8;  
     end
+    meanShape = zeros(100,2);
     
+    if (method ==0)
+        meanShape = multi_procrustes(I,100,no_of_samples);
+    else
+        meanShape = tangent_space_projection(I,100,no_of_samples);
+    end
     
-    meanShape = multi_procrustes(I,100,no_of_samples);
     size(meanShape)
     plot(meanShape(:,1),meanShape(:,2),'b*');
     
