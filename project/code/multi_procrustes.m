@@ -1,4 +1,4 @@
-function [d, Y] = multi_procrustes(I,n,no_of_samples)
+function  Y = multi_procrustes(I,n,no_of_samples)
 	% array fun
 	d = 1;
 	Z = zeros(n,2,no_of_samples);
@@ -8,7 +8,7 @@ function [d, Y] = multi_procrustes(I,n,no_of_samples)
     base = I(:,:,1);
     prevbase = ones(n,2);
     j=0;
-    while(j<4)
+    while(j<2)
         muX = mean(base,1);
         ssqX = sum(base.^2,1);
         ssqX = sum(ssqX);
@@ -34,7 +34,10 @@ function [d, Y] = multi_procrustes(I,n,no_of_samples)
         disp(j);
         j=j+1;
     end
+    disp('SIze of Z');
+    size(Z)
     Y = mean(Z,3);
+    %Y = Z(:,:,1);
 
 function z = center(X)
     [a, b]   = size(X);
