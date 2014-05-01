@@ -1,5 +1,5 @@
 function shape_analysis(no_of_samples,method)
-    s = 80;
+    s = 60;
     e = 100;
     phi0 = 0;
     phi90 = pi/2;
@@ -27,10 +27,12 @@ function shape_analysis(no_of_samples,method)
     
     if (method ==0)
         meanShape = multi_procrustes(I,100,no_of_samples);
-    else
+        plot(meanShape(:,1),meanShape(:,2),'b*');
+    elseif(method ==1)
         meanShape = tangent_space_projection(I,100,no_of_samples);
+        plot(meanShape(:,1),meanShape(:,2),'b*');
+    else
+        Y = pca(I,100,no_of_samples)
     end
     
-    size(meanShape)
-    plot(meanShape(:,1),meanShape(:,2),'b*');
     

@@ -12,6 +12,7 @@ function [Y] = pca(I,n,no_of_samples)
         covar = covar + Z(:,1,i)*Z(:,1,i)';
     end
     [V,D] = eig(covar);
+    Y = V;
     
 function z = center(X)
     [a, b]   = size(X);
