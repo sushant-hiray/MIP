@@ -1,4 +1,4 @@
-function shape_analysis(no_of_samples,method)
+function shape_analysis(n,no_of_samples,method)
     s = 60;
     e = 100;
     phi0 = 0;
@@ -9,7 +9,7 @@ function shape_analysis(no_of_samples,method)
     Y0 = 100*rand(1,1);
     b = a/8;    
    
-    
+   
     I = zeros(100,2,no_of_samples);
     hold on
     for i = 1:no_of_samples,
@@ -23,13 +23,15 @@ function shape_analysis(no_of_samples,method)
         Y0 = 100*rand(1,1);
         b = a/8;  
     end
-    meanShape = zeros(100,2);
+    
+    meanShape = zeros(n,2);
+   
     
     if (method ==0)
-        meanShape = multi_procrustes(I,100,no_of_samples);
+        meanShape = multi_procrustes(I,n,no_of_samples);
         plot(meanShape(:,1),meanShape(:,2),'b*');
     elseif(method ==1)
-        meanShape = tangent_space_projection(I,100,no_of_samples);
+        meanShape = tangent_space_projection(I,n,no_of_samples);
         plot(meanShape(:,1),meanShape(:,2),'b*');
     else
         Y = pca(I,100,no_of_samples)
