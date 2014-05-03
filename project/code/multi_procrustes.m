@@ -1,4 +1,4 @@
-function  Y = multi_procrustes(I,n,no_of_samples)
+function  [Y,Scaled] = multi_procrustes(I,n,no_of_samples)
 	% array fun
 	d = 1;
 	Z = zeros(n,2,no_of_samples);
@@ -34,9 +34,10 @@ function  Y = multi_procrustes(I,n,no_of_samples)
         disp(j);
         j=j+1;
     end
-    disp('SIze of Z');
-    size(Z)
+    %disp('SIze of Z');
+    %size(Z)
     Y = mean(Z,3);
+    Scaled = Z;
     %Y = Z(:,:,1);
 
 function z = center(X)

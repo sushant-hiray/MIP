@@ -19,7 +19,7 @@ function shape_analysis_data_hand(shapes,method)
     end
     
     meanShape = zeros(n,2);
-    Scaled =0;
+    Scaled =I;
     
     if (method ==0)
         [meanShape,Scaled] = multi_procrustes(I,n,no_of_samples);
@@ -34,6 +34,29 @@ function shape_analysis_data_hand(shapes,method)
     
     %compute the variance 
     [V,D] = pca(meanShape,Scaled,n,no_of_samples);
+    [row,col] = find(D == max(abs(D(:))));
+    eigenVect1 = V(:,row);
+    
+    [x,y] = size(D)
+    temp = zeros(y,1);
+    temp = temp +1;
+    temp = D * temp;
+    
+    print('max eigen value')
+    a =max(D(:));
+    %disp('column number is : ' + row);
+    eigenDiff = zeros(n,2);
+    eigenDiff(:,1) = eigenVect1(1:2:end);
+    eigenDiff(:,2) = eigenVect1(2:2:end);
+    meanShape2 = meanShape - eigenDiff;
+    meanShape3 = meanShape + eigenDiff;
+    size(meanShape3)
+    plot(meanShape2(:,1),meanShape2(:,2),'g*');
+    %plot(meanShape3(:,1),meanShape3(:,2),'m*');
+    
+    
+    
+    
     
     
     
