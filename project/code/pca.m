@@ -11,7 +11,10 @@ function [V,D] = pca(meanI,Z,n,no_of_samples)
         K(:,i) = temp -meanI;
         size(K(:,i))
         covar = covar + K(:,i)*K(:,i)';
+        
+        
     end
+    covar = covar/no_of_samples
     [V,D] = eig(covar);
     
     
