@@ -56,6 +56,17 @@ function shape_analysis_data_hand(shapes,method)
     size(meanShape3)
     %plot(meanShape2(:,1),meanShape2(:,2),'g*');
     %plot(meanShape3(:,1),meanShape3(:,2),'m*');
+    for i=1:3,
+        for j=1:3
+            if i ==3 && j==3
+                continue;
+            end
+            %subplot(3,3,(i-1)*3+j)
+            %plot(I(:,1,i),I(:,2,i),'r+')
+        end
+    end
+    %subplot(3,3,9);
+    %plot(meanShape(:,1),meanShape(:,2),'b*');
     
     
     
