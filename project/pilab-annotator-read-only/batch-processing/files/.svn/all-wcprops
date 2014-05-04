@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/40/trunk/batch-processing/files
+END
+fit_facial_points.exe
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/25/trunk/batch-processing/files/fit_facial_points.exe
+END
+cv210.lib
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/25/trunk/batch-processing/files/cv210.lib
+END
+cv100.dll
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/25/trunk/batch-processing/files/cv100.dll
+END
+haarcascade_frontalface_alt2.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/25/trunk/batch-processing/files/haarcascade_frontalface_alt2.xml
+END
+cv210.dll
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/26/trunk/batch-processing/files/cv210.dll
+END
+cxcore210.lib
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/25/trunk/batch-processing/files/cxcore210.lib
+END
+highgui210.lib
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/25/trunk/batch-processing/files/highgui210.lib
+END
+detect_face.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/40/trunk/batch-processing/files/detect_face.py
+END
+ismail.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/25/trunk/batch-processing/files/ismail.xml
+END
+cvaux210.lib
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/25/trunk/batch-processing/files/cvaux210.lib
+END
+cxcore100.dll
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/25/trunk/batch-processing/files/cxcore100.dll
+END
+highgui100.dll
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/25/trunk/batch-processing/files/highgui100.dll
+END
+asmlibrary.dll
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/25/trunk/batch-processing/files/asmlibrary.dll
+END
+cxcore210.dll
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/26/trunk/batch-processing/files/cxcore210.dll
+END
+ismail.amf
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/25/trunk/batch-processing/files/ismail.amf
+END
+highgui210.dll
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/26/trunk/batch-processing/files/highgui210.dll
+END
+cvaux210.dll
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/26/trunk/batch-processing/files/cvaux210.dll
+END

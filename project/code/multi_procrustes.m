@@ -36,7 +36,8 @@ function  [Y,Scaled] = multi_procrustes(I,n,no_of_samples)
     end
     %disp('SIze of Z');
     %size(Z)
-    Y = mean(Z,3);
+    %Y = mean(Z,3);
+    Y = Z(:,:,1);
     Scaled = Z;
     %Y = Z(:,:,1);
 

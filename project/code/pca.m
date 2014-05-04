@@ -14,7 +14,7 @@ function [V,D] = pca(meanI,Z,n,no_of_samples)
         
         
     end
-    covar = covar/no_of_samples
+    covar = covar;
     [V,D] = eig(covar);
     
     

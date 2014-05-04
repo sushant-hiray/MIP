@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 22
+/svn/!svn/ver/40/trunk
+END
+annotator.py
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/40/trunk/annotator.py
+END
+converter.py
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/33/trunk/converter.py
+END
+ui_mainwindow.py
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/29/trunk/ui_mainwindow.py
+END
+annotator.ui
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/29/trunk/annotator.ui
+END
+about.ui
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/13/trunk/about.ui
+END
