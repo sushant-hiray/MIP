@@ -16,7 +16,7 @@ function shape_analysis_data_hand(shapes,method)
     I(:,2,:) = Y;
     hold on
     for i = 1:no_of_samples,
-       plot(I(:,1,i),I(:,2,i),'r+');
+       %plot(I(:,1,i),I(:,2,i),'r+');
     end
     
     meanShape = zeros(n,2);
@@ -24,7 +24,7 @@ function shape_analysis_data_hand(shapes,method)
     
     if (method ==0)
         [meanShape,Scaled] = multi_procrustes(I,n,no_of_samples);
-        plot(meanShape(:,1),meanShape(:,2),'b*');
+        %plot(meanShape(:,1),meanShape(:,2),'b*');
     elseif(method ==1)
         meanShape = tangent_space_projection(I,n,no_of_samples);
         plot(meanShape(:,1),meanShape(:,2),'b*');
@@ -53,9 +53,19 @@ function shape_analysis_data_hand(shapes,method)
     meanShape2 = meanShape - eigenDiff;
     meanShape3 = meanShape + eigenDiff;
     size(meanShape3)
-    plot(meanShape2(:,1),meanShape2(:,2),'g*');
+    %plot(meanShape2(:,1),meanShape2(:,2),'g*');
     %plot(meanShape3(:,1),meanShape3(:,2),'m*');
-    
+    for i=1:3,
+        for j=1:3
+            if i ==3 && j==3
+                continue;
+            end
+            subplot(3,3,(i-1)*3+j)
+            plot(I(:,1,i),I(:,2,i),'r+')
+        end
+    end
+    subplot(3,3,9);
+    plot(meanShape(:,1),meanShape(:,2),'b*');
     
     
     
