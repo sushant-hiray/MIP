@@ -15,7 +15,7 @@ function shape_analysis_data_hand(shapes,method)
     I(:,2,:) = Y;
     hold on
     for i = 1:no_of_samples,
-       %plot(I(:,1,i),I(:,2,i),'r+');
+       plot(I(:,1,i),I(:,2,i),'r+');
     end
     
     meanShape = zeros(n,2);
@@ -89,24 +89,34 @@ function shape_analysis_data_hand(shapes,method)
     plot(meanShape6(:,1),meanShape6(:,2),'g*-');
     plot(meanShape7(:,1),meanShape7(:,2),'m*-');
     plot(meanShape(:,1),meanShape(:,2),'b*-');
-    axis equal tight;
+    
+    figure();
+    hold on;
     for i=1:3,
         for j=1:3
             if i ==3 && j==3
                 continue;
             end
-            %subplot(3,3,(i-1)*3+j)
-            %plot(Scaled(:,1,i),Scaled(:,2,i),'r+')
+            subplot(3,3,(i-1)*3+j)
+            plot(Scaled(:,1,i),Scaled(:,2,i),'r*-')
+            axis equal;
         end
     end
-    %subplot(3,3,9);
-    %plot(meanShape(:,1),meanShape(:,2),'b*-');
+    subplot(3,3,9);
+    plot(meanShape(:,1),meanShape(:,2),'b*-');
+    
+    figure();
+    hold on;
+     plot(meanShape(:,1),meanShape(:,2),'b*-');
     for i = 1:no_of_samples,
-       %plot(Scaled(:,1,i),Scaled(:,2,i),'r+-');
+       plot(Scaled(:,1,i),Scaled(:,2,i),'r*');
     end
     
+    axis equal;
     
-    
+    figure();
+    hold on;
+    plot(meanShape(:,1),meanShape(:,2),'b*-');
     
     
     
