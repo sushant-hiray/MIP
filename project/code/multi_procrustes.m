@@ -22,8 +22,8 @@ function  [Y,Scaled] = multi_procrustes(I,n,no_of_samples)
         end;
 
         mean_sample = Z(:,:,1);
-
-        for i = 2:no_of_samples,
+    
+        for i = 1:no_of_samples,
             rotated = rotate(mean_sample,Z(:,:,i),muX,normX,n);
             d = 1;
             Z(:,:,i) = rotated;
