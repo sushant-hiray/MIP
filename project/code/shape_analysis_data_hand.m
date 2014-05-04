@@ -53,7 +53,7 @@ function shape_analysis_data_hand(shapes,method)
     meanShape2 = meanShape - eigenDiff;
     meanShape3 = meanShape + eigenDiff;
     size(meanShape3)
-    plot(meanShape2(:,1),meanShape2(:,2),'g*');
+    %plot(meanShape2(:,1),meanShape2(:,2),'g*');
     %plot(meanShape3(:,1),meanShape3(:,2),'m*');
     
     
